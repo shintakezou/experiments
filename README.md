@@ -1,2 +1,4 @@
-# experiments
-where I put "experimental" stuffs
+# Experiments
+
+Where I put "experimental" stuffs.
+
