@@ -71,7 +71,7 @@ func main() {
 	fakeData := make(map[float64]float64)
 
 	for x := *minVal; x < *maxVal; x += *step {
-		fakeData[x] = theFunc(x, 1, 2, 3) + *perturbation*(2.0*rand.Float64()-1.0)
+		fakeData[x] = theFunc(x, 1, -2, 3) + *perturbation*(2.0*rand.Float64()-1.0)
 	}
 	actualFunc := func(x float64) float64 {
 		if val, ok := fakeData[x]; ok {
@@ -83,7 +83,7 @@ func main() {
 			// otherwise x is between defined values: we should find them and interpolate?
 			// TODO ...
 			// for now this won't happen, so just compute a new value, if we're going to really use it
-			return theFunc(x, 1, 2, 3) + *perturbation*(2.0*rand.Float64()-1.0)
+			return theFunc(x, 1, -2, 3) + *perturbation*(2.0*rand.Float64()-1.0)
 		}
 	}
 
@@ -103,7 +103,7 @@ func main() {
 	// generate initial genes; w should be chosen so that
 	// expected values are in (-w, w)
 	g.ProduceGeneFunc = func() GA.Gene {
-		w := 5.0
+		w := 100.0 // the greater the value, the lesser we assume about the correct values
 		a := 2.0*rand.Float64() - 1.0
 		b := 2.0*rand.Float64() - 1.0
 		c := 2.0*rand.Float64() - 1.0
