@@ -15,7 +15,7 @@ done
 
 Then I have generated a graph using R:
 
-![graph of fitted data][experiments/GA/go/img/gafit.png]
+![graph of fitted data](img/gafit.png)
 
 
 The R code I've used is simply:
