@@ -17,6 +17,11 @@ const numOfIterations = 1000
 const defaultMinVal = 0.0
 const defaultMaxVal = 10.0
 const defaultStep = 0.1
+const defaultAbsRange = 100.0
+
+const gfuncA = 1
+const gfuncB = -2
+const gfuncC = 3
 
 var initialPop = flag.Uint("pop", initialPopulation, "initial numbers of random individuals")
 var iterations = flag.Uint("iter", numOfIterations, "number of iterations (generations)")
@@ -27,6 +32,7 @@ var maxVal = flag.Float64("max", defaultMaxVal, "max x")
 var step = flag.Float64("step", defaultStep, "step")
 var dumpStep = flag.Float64("dumpstep", defaultStep, "dump step")
 var perturbation = flag.Float64("perturbe", 0.0, "mag of sample function perturbation")
+var absRange = flag.Float64("wrange", defaultAbsRange, "gene factory absolute max value")
 
 func main() {
 	flag.Parse()
@@ -71,7 +77,7 @@ func main() {
 	fakeData := make(map[float64]float64)
 
 	for x := *minVal; x < *maxVal; x += *step {
-		fakeData[x] = theFunc(x, 1, -2, 3) + *perturbation*(2.0*rand.Float64()-1.0)
+		fakeData[x] = theFunc(x, gfuncA, gfuncB, gfuncC) + *perturbation*(2.0*rand.Float64()-1.0)
 	}
 	actualFunc := func(x float64) float64 {
 		if val, ok := fakeData[x]; ok {
@@ -83,7 +89,7 @@ func main() {
 			// otherwise x is between defined values: we should find them and interpolate?
 			// TODO ...
 			// for now this won't happen, so just compute a new value, if we're going to really use it
-			return theFunc(x, 1, -2, 3) + *perturbation*(2.0*rand.Float64()-1.0)
+			return theFunc(x, gfuncA, gfuncB, gfuncC) + *perturbation*(2.0*rand.Float64()-1.0)
 		}
 	}
 
@@ -103,7 +109,7 @@ func main() {
 	// generate initial genes; w should be chosen so that
 	// expected values are in (-w, w)
 	g.ProduceGeneFunc = func() GA.Gene {
-		w := 100.0 // the greater the value, the lesser we assume about the correct values
+		w := *absRange // the greater the value, the lesser we assume about the correct values
 		a := 2.0*rand.Float64() - 1.0
 		b := 2.0*rand.Float64() - 1.0
 		c := 2.0*rand.Float64() - 1.0
