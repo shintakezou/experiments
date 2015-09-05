@@ -60,11 +60,6 @@ func (g *GA) Evolve(howManyTimes uint) error {
 		return errors.New("GA is not configured properly")
 	}
 
-	/*
-		if uint(len(g.Offsprings)) < g.SurvivorsLimit {
-			g.Populate(g.SurvivorsLimit - uint(len(g.Offsprings)))
-		}
-	*/
 	tmp := make([]Gene, 0)
 	for n := uint(0); n < howManyTimes; n++ {
 		// order by fitness and decimate
@@ -82,8 +77,8 @@ func (g *GA) Evolve(howManyTimes uint) error {
 		copy(g.Offsprings, tmp)
 		tmp = nil
 	}
-	sort.Sort(g)
 	if g.SurvivorsLimit < uint(len(g.Offsprings)) {
+		sort.Sort(g)
 		g.Offsprings = g.Offsprings[:g.SurvivorsLimit]
 	}
 	return nil
