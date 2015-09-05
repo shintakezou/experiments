@@ -11,7 +11,9 @@ import (
 	"math/rand"
 )
 
-const mutationProb = 0.5
+// each "chromosome" has its mutation probability
+var mutationProb = [3]float64{0.5, 0.5, 0.8}
+
 const initialPopulation = 50
 const numOfIterations = 1000
 const defaultMinVal = 0.0
@@ -52,18 +54,14 @@ func main() {
 
 	// mutate a "gene"
 	g.MutationFunc = func(a GA.Gene) GA.Gene {
-		p := rand.Float64()
-		if p < mutationProb {
-			m1 := (2.0*rand.Float64() - 1.0) / 10.0
-			m2 := (2.0*rand.Float64() - 1.0) / 10.0
-			m3 := (2.0*rand.Float64() - 1.0) / 10.0
-			return GA.Gene{
-				a[0].(float64) + m1,
-				a[1].(float64) + m2,
-				a[2].(float64) + m3,
+		f := [3]float64{a[0].(float64), a[1].(float64), a[2].(float64)}
+		for i, v := range mutationProb {
+			p := rand.Float64()
+			if p < v {
+				f[i%len(f)] += (2.0*rand.Float64() - 1.0) / 10.0
 			}
 		}
-		return a
+		return GA.Gene{f[0], f[1], f[2]}
 	}
 
 	// the generic function we use as fit function
