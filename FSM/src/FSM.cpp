@@ -107,7 +107,7 @@ AwareState& AwareState::onRule(const Rule* rule, const AwareState* dest)
 
 bool AwareState::overConnectionsDo(
     std::function<bool(const Rule*,
-                       const std::string& stateName)> action) const
+                       const std::string&)> action) const
 {
     return std::any_of(connections_.begin(),
                        connections_.end(),
