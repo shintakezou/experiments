@@ -76,6 +76,15 @@ int main()
     ro.connect("S0", "S1", "any");
     ro.first("S0");
 
+    // 
+    FSM odd;
+    odd.state("S1", true);
+    odd.connect("S1", "S2", "0");
+    odd.connect("S1", "S1", "1");
+    odd.connect("S2", "S1", "0");
+    odd.connect("S2", "S2", "1");
+    odd.first("S1");
+
     // grow this list to cover more cases on the edges(?)
     struct {
         FSM* f;
@@ -102,7 +111,11 @@ int main()
         { &rec, "12B48", false },
         { &rec, "22A45", false },
         { &rec, "12A22B4", false },
-        { &rec, "1312A4", false }
+        { &rec, "1312A4", false },
+        { &odd, "11100", true },
+        { &odd, "10101", true },
+        { &odd, "00101", false },
+        { &odd, "11101", false }
     };
 
     for (auto& s : test_list) {
