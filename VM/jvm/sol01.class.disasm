@@ -1,0 +1,213 @@
+Compiled from "sol01.java"
+public class sol01 {
+  static final int MAXLOOP;
+
+  public sol01();
+    Code:
+       0: aload_0       
+       1: invokespecial #1;                 // Method java/lang/Object."<init>":()V
+       4: return        
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: sipush        10000
+       3: newarray       double
+       5: astore_2      
+       6: new           #2;                 // class java/text/SimpleDateFormat
+       9: dup           
+      10: ldc           #3;                 // String yyyy/MM/dd HH:mm:ss
+      12: invokespecial #4;                 // Method java/text/SimpleDateFormat."<init>":(Ljava/lang/String;)V
+      15: astore_3      
+      16: new           #5;                 // class java/util/Date
+      19: dup           
+      20: invokespecial #6;                 // Method java/util/Date."<init>":()V
+      23: astore        4
+      25: getstatic     #7;                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      28: ldc           #8;                 // String Tempo inizio caricamento array: %s\n
+      30: iconst_1      
+      31: anewarray     #9;                 // class java/lang/Object
+      34: dup           
+      35: iconst_0      
+      36: aload_3       
+      37: aload         4
+      39: invokevirtual #10;                // Method java/text/DateFormat.format:(Ljava/util/Date;)Ljava/lang/String;
+      42: aastore       
+      43: invokevirtual #11;                // Method java/io/PrintStream.printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+      46: pop           
+      47: invokestatic  #12;                // Method java/lang/System.nanoTime:()J
+      50: lstore        5
+      52: iconst_0      
+      53: istore_1      
+      54: iload_1       
+      55: sipush        10000
+      58: if_icmpge     101
+      61: dconst_1      
+      62: dstore        7
+      64: iconst_1      
+      65: istore        9
+      67: iload         9
+      69: iload_1       
+      70: if_icmpgt     87
+      73: dload         7
+      75: iload         9
+      77: i2d           
+      78: dmul          
+      79: dstore        7
+      81: iinc          9, 1
+      84: goto          67
+      87: aload_2       
+      88: iload_1       
+      89: iload_1       
+      90: i2d           
+      91: dload         7
+      93: dmul          
+      94: dastore       
+      95: iinc          1, 1
+      98: goto          54
+     101: invokestatic  #12;                // Method java/lang/System.nanoTime:()J
+     104: lstore        7
+     106: new           #5;                 // class java/util/Date
+     109: dup           
+     110: invokespecial #6;                 // Method java/util/Date."<init>":()V
+     113: astore        9
+     115: getstatic     #7;                 // Field java/lang/System.out:Ljava/io/PrintStream;
+     118: ldc           #13;                // String Tempo fine caricamento array: %s\n
+     120: iconst_1      
+     121: anewarray     #9;                 // class java/lang/Object
+     124: dup           
+     125: iconst_0      
+     126: aload_3       
+     127: aload         9
+     129: invokevirtual #10;                // Method java/text/DateFormat.format:(Ljava/util/Date;)Ljava/lang/String;
+     132: aastore       
+     133: invokevirtual #11;                // Method java/io/PrintStream.printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+     136: pop           
+     137: getstatic     #7;                 // Field java/lang/System.out:Ljava/io/PrintStream;
+     140: ldc           #14;                // String Tempo caricamento array: %d ms\n
+     142: iconst_1      
+     143: anewarray     #9;                 // class java/lang/Object
+     146: dup           
+     147: iconst_0      
+     148: lload         7
+     150: lload         5
+     152: lsub          
+     153: ldc2_w        #15;                // long 1000000l
+     156: ldiv          
+     157: invokestatic  #17;                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     160: aastore       
+     161: invokevirtual #11;                // Method java/io/PrintStream.printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+     164: pop           
+     165: new           #5;                 // class java/util/Date
+     168: dup           
+     169: invokespecial #6;                 // Method java/util/Date."<init>":()V
+     172: astore        4
+     174: getstatic     #7;                 // Field java/lang/System.out:Ljava/io/PrintStream;
+     177: ldc           #18;                // String Tempo inizio ordinamento: %s\n
+     179: iconst_1      
+     180: anewarray     #9;                 // class java/lang/Object
+     183: dup           
+     184: iconst_0      
+     185: aload_3       
+     186: aload         4
+     188: invokevirtual #10;                // Method java/text/DateFormat.format:(Ljava/util/Date;)Ljava/lang/String;
+     191: aastore       
+     192: invokevirtual #11;                // Method java/io/PrintStream.printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+     195: pop           
+     196: invokestatic  #12;                // Method java/lang/System.nanoTime:()J
+     199: lstore        5
+     201: iconst_0      
+     202: istore_1      
+     203: iload_1       
+     204: sipush        10000
+     207: if_icmpge     271
+     210: aload_2       
+     211: iload_1       
+     212: daload        
+     213: dstore        10
+     215: iload_1       
+     216: iconst_1      
+     217: iadd          
+     218: istore        12
+     220: iload         12
+     222: sipush        10000
+     225: if_icmpge     265
+     228: aload_2       
+     229: iload         12
+     231: daload        
+     232: dload         10
+     234: dcmpl         
+     235: ifle          259
+     238: aload_2       
+     239: iload         12
+     241: daload        
+     242: dstore        13
+     244: aload_2       
+     245: iload         12
+     247: dload         10
+     249: dastore       
+     250: aload_2       
+     251: iload_1       
+     252: dload         13
+     254: dastore       
+     255: dload         13
+     257: dstore        10
+     259: iinc          12, 1
+     262: goto          220
+     265: iinc          1, 1
+     268: goto          203
+     271: invokestatic  #12;                // Method java/lang/System.nanoTime:()J
+     274: lstore        7
+     276: new           #5;                 // class java/util/Date
+     279: dup           
+     280: invokespecial #6;                 // Method java/util/Date."<init>":()V
+     283: astore        9
+     285: getstatic     #7;                 // Field java/lang/System.out:Ljava/io/PrintStream;
+     288: ldc           #19;                // String Tempo fine ordinamento: %s\n
+     290: iconst_1      
+     291: anewarray     #9;                 // class java/lang/Object
+     294: dup           
+     295: iconst_0      
+     296: aload_3       
+     297: aload         9
+     299: invokevirtual #10;                // Method java/text/DateFormat.format:(Ljava/util/Date;)Ljava/lang/String;
+     302: aastore       
+     303: invokevirtual #11;                // Method java/io/PrintStream.printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+     306: pop           
+     307: getstatic     #7;                 // Field java/lang/System.out:Ljava/io/PrintStream;
+     310: ldc           #20;                // String Tempo ordinamento array: %d ms\n
+     312: iconst_1      
+     313: anewarray     #9;                 // class java/lang/Object
+     316: dup           
+     317: iconst_0      
+     318: lload         7
+     320: lload         5
+     322: lsub          
+     323: ldc2_w        #15;                // long 1000000l
+     326: ldiv          
+     327: invokestatic  #17;                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     330: aastore       
+     331: invokevirtual #11;                // Method java/io/PrintStream.printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+     334: pop           
+     335: iconst_0      
+     336: istore        10
+     338: iload         10
+     340: aload_2       
+     341: arraylength   
+     342: if_icmpge     374
+     345: getstatic     #7;                 // Field java/lang/System.out:Ljava/io/PrintStream;
+     348: ldc           #21;                // String %f\n
+     350: iconst_1      
+     351: anewarray     #9;                 // class java/lang/Object
+     354: dup           
+     355: iconst_0      
+     356: aload_2       
+     357: iload         10
+     359: daload        
+     360: invokestatic  #22;                // Method java/lang/Double.valueOf:(D)Ljava/lang/Double;
+     363: aastore       
+     364: invokevirtual #11;                // Method java/io/PrintStream.printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+     367: pop           
+     368: iinc          10, 1
+     371: goto          338
+     374: return        
+}
